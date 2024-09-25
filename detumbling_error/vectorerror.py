@@ -11,11 +11,10 @@ def graph(file, sat_XYZ):
    with open(file, 'r') as file:
         csv_reader = csv.DictReader(file)
 
-        max_iterations = 300  # Set the limit for the number of loops
+        max_iterations = 1209602  # Set the limit for the number of loops
 
 
         for iteration, row in enumerate(csv_reader):
-            max_iterations = 1048576
             # Stopping iterations at a certain maximum
             if iteration >= max_iterations:
                 break
@@ -24,8 +23,7 @@ def graph(file, sat_XYZ):
                 field_XYZ = (float(row['x_(nT)'].strip()), float(row['y_(nT)'].strip()), float(row['z_(nT)'].strip()))
                 
                 # Calculate the angle between satellite vector and field vector
-                angle = vector_angles(sat_XYZ, field_XYZ)  # Assuming sat_XYZ is (0, 0, 0) to get angle of magnetic field
-
+                angle = vector_angles(sat_XYZ, field_XYZ)
                 # Store the result in the list with iterations to measure time in seconds
                 field_vectors.append(angle)
                 time_count.append(iteration)
